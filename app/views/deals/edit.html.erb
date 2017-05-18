@@ -1,0 +1,6 @@
+<h1><%= @venue.name %> - <%= @deal.title %> - Editing Deal</h1>
+
+<%= render 'form', venue: @venue, deal: @deal %>
+
+<%= link_to 'Show', venue_deal_path(@venue, @deal) %> |
+<%= link_to 'Back', venue_deals_path(@venue) %>

@@ -1,0 +1,30 @@
+<h1><%= @venue.name %> - Deals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Expiration</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @venue.deals.each do |deal| %>
+      <tr>
+        <td><%= deal.title %></td>
+        <td><%= deal.description %></td>
+        <td><%= deal.expiration %></td>
+        <td><%= link_to 'Show', venue_deal_path(@venue, deal) %></td>
+        <td><%= link_to 'Edit', edit_venue_deal_path(@venue, deal) %></td>
+        <td><%= link_to 'Destroy', venue_deal_path(@venue, deal), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Deal', new_venue_deal_path(@venue.id) %> |
+<%= link_to 'Back', venues_path %>

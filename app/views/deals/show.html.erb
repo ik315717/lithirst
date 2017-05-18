@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @venue.name %> - Deal</h1>
+
+<p>
+  <strong>Title:</strong>
+  <%= @deal.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @deal.description %>
+</p>
+
+<p>
+  <strong>Expiration:</strong>
+  <%= @deal.expiration %>
+</p>
+
+<%= link_to 'Edit', edit_venue_deal_path(@venue, @deal) %> |
+<%= link_to 'Back', venue_deals_path(@venue) %>
