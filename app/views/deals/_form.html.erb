@@ -23,7 +23,22 @@
 
   <div class="field">
     <%= f.label :expiration %>
-    <%= f.datetime_field :expiration %>
+    <%= f.date_field :expiration %>
+  </div>
+
+  <div class="field">
+    <%= f.label :day %> Please capitolize the first letter! <br>
+    <%= f.text_field :day %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_time %>
+    <%= f.time_field :start_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_time %>
+    <%= f.time_field :end_time %>
   </div>
 
   <div class="actions">

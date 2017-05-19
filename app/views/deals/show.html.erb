@@ -14,7 +14,22 @@
 
 <p>
   <strong>Expiration:</strong>
-  <%= @deal.expiration %>
+  <%= @deal.expiration.strftime("%m/%d/%Y") %>
+</p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @deal.day %>
+</p>
+
+<p>
+  <strong>Start Time:</strong>
+  <%= @deal.start_time.in_time_zone("EST").strftime("%I:%M %p") %>
+</p>
+
+<p>
+  <strong>End Time:</strong>
+  <%= @deal.end_time.in_time_zone("EST").strftime("%I:%M %p") %>
 </p>
 
 <%= link_to 'Edit', edit_venue_deal_path(@venue, @deal) %> |

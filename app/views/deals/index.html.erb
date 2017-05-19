@@ -6,6 +6,9 @@
       <th>Title</th>
       <th>Description</th>
       <th>Expiration</th>
+      <th>Day</th>
+      <th>Start Time</th>
+      <th>End Time</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -15,7 +18,10 @@
       <tr>
         <td><%= deal.title %></td>
         <td><%= deal.description %></td>
-        <td><%= deal.expiration %></td>
+        <td><%= deal.expiration.strftime("%m/%d/%Y") %></td>
+        <td><%= deal.day %></td>
+        <td><%= deal.start_time.in_time_zone("EST").strftime("%I:%M %p") %></td>
+        <td><%= deal.end_time.in_time_zone("EST").strftime("%I:%M %p") %></td>
         <td><%= link_to 'Show', venue_deal_path(@venue, deal) %></td>
         <td><%= link_to 'Edit', edit_venue_deal_path(@venue, deal) %></td>
         <td><%= link_to 'Destroy', venue_deal_path(@venue, deal), method: :delete, data: { confirm: 'Are you sure?' } %></td>

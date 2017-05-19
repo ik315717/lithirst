@@ -68,7 +68,7 @@ class DealsController < ApplicationController
   end
 
   def deal_params
-    params.require(:deal).permit(:title, :description, :expiration)
+    params.require(:deal).permit(:title, :description, :expiration, :day, :start_time, :end_time)
   end
 
 end
