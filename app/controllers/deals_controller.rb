@@ -27,6 +27,8 @@ class DealsController < ApplicationController
   def create
     @venue = Venue.find(params[:venue_id])
     @deal = @venue.deals.new(deal_params)
+    @deal.start_time = @deal.start_time.in_time_zone('EST')
+    @deal.start_time -= @deal.start_time.utc_offset
 
     respond_to do |format|
       if @deal.save
@@ -44,6 +46,8 @@ class DealsController < ApplicationController
   def update
     @venue = Venue.find(params[:venue_id])
     @deal = @venue.deals.find(params[:id])
+    @deal.start_time = @deal.start_time.in_time_zone('EST')
+    @deal.start_time -= @deal.start_time.utc_offset
     respond_to do |format|
       if @deal.update(deal_params)
         format.html { redirect_to venue_deal_path(@venue, @deal), notice: 'Deal was successfully updated.' }
@@ -69,8 +73,8 @@ class DealsController < ApplicationController
 
   private
 
-    def deal_params
-      params.require(:deal).permit(:title, :description, :expiration, :start_time, :hours_active, { day_ids:[] })
-    end
+  def deal_params
+    params.require(:deal).permit(:title, :description, :expiration, :start_time, :hours_active, { day_ids:[] })
+  end
 
 end
