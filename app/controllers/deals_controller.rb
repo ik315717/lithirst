@@ -46,10 +46,12 @@ class DealsController < ApplicationController
   def update
     @venue = Venue.find(params[:venue_id])
     @deal = @venue.deals.find(params[:id])
+    @deal.update(deal_params)
     @deal.start_time = @deal.start_time.in_time_zone('EST')
     @deal.start_time -= @deal.start_time.utc_offset
+    
     respond_to do |format|
-      if @deal.update(deal_params)
+      if @deal.save
         format.html { redirect_to venue_deal_path(@venue, @deal), notice: 'Deal was successfully updated.' }
         format.json { render :show, status: :ok, location: @deal }
       else
