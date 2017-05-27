@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519014631) do
+ActiveRecord::Schema.define(version: 20170527151437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,16 +21,22 @@ ActiveRecord::Schema.define(version: 20170519014631) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "days_deals", force: :cascade do |t|
+    t.integer "day_id"
+    t.integer "deal_id"
+    t.index ["day_id"], name: "index_days_deals_on_day_id", using: :btree
+    t.index ["deal_id"], name: "index_days_deals_on_deal_id", using: :btree
+  end
+
   create_table "deals", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
     t.date     "expiration"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "venue_id"
-    t.string   "day"
     t.time     "start_time"
-    t.time     "end_time"
+    t.decimal  "hours_active"
   end
 
   create_table "open_spans", force: :cascade do |t|
@@ -57,4 +63,6 @@ ActiveRecord::Schema.define(version: 20170519014631) do
     t.string   "state"
   end
 
+  add_foreign_key "days_deals", "days"
+  add_foreign_key "days_deals", "deals"
 end

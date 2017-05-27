@@ -18,8 +18,8 @@
 </p>
 
 <p>
-  <strong>Day:</strong>
-  <%= @deal.day %>
+  <strong>Expiration:</strong>
+  <%= @deal.print_days %>
 </p>
 
 <p>
@@ -29,7 +29,7 @@
 
 <p>
   <strong>End Time:</strong>
-  <%= @deal.end_time.in_time_zone("EST").strftime("%I:%M %p") %>
+  <%= ( @deal.start_time.in_time_zone("EST") + ( @deal.hours_active*60*60 ) ).strftime("%I:%M %p") %>
 </p>
 
 <%= link_to 'Edit', edit_venue_deal_path(@venue, @deal) %> |

@@ -1,2 +1,0 @@
-class OpenSpan < ApplicationRecord
-end

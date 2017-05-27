@@ -67,8 +67,10 @@ class DealsController < ApplicationController
     end
   end
 
-  def deal_params
-    params.require(:deal).permit(:title, :description, :expiration, :day, :start_time, :end_time)
-  end
+  private
+
+    def deal_params
+      params.require(:deal).permit(:title, :description, :expiration, :start_time, :hours_active, { day_ids:[] })
+    end
 
 end

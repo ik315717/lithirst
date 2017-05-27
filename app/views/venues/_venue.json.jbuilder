@@ -13,7 +13,10 @@ json.deals(venue.deals.each) do |deal|
   json.title deal.title
   json.description deal.description
   json.expiration deal.expiration
-  json.day deal.day
-  json.start_time deal.start_time
-  json.end_time deal.end_time
+  json.days(deal.days.each) do |day|
+    json.id day.id
+    json.name day.name
+  end
+  json.start_time deal.start_time.in_time_zone("EST").strftime("%I:%M %p")
+  json.hours_active deal.hours_active
 end

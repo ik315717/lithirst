@@ -27,8 +27,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :day %> Please capitolize the first letter! <br>
-    <%= f.text_field :day %>
+      <% for day in Day.all %>
+          <div>
+              <%= check_box_tag "deal[day_ids][]", day.id, deal.days.include?(day) %>
+              <%= day.name %>
+          </div>
+      <% end %>
   </div>
 
   <div class="field">
@@ -37,8 +41,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :end_time %>
-    <%= f.time_field :end_time %>
+    <%= f.label :hours_active %>
+    <%= f.text_field :hours_active %>
   </div>
 
   <div class="actions">
