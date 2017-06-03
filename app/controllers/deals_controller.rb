@@ -1,4 +1,6 @@
 class DealsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_for_permissions
 
   def index
     @venue = Venue.find(params[:venue_id])
@@ -77,6 +79,14 @@ class DealsController < ApplicationController
 
   def deal_params
     params.require(:deal).permit(:title, :description, :expiration, :start_time, :hours_active, { day_ids:[] })
+  end
+
+  def check_for_permissions
+    if ( current_user.role == 'admin' && current_user.approved? )
+
+    else
+      redirect_to root_path
+    end
   end
 
 end

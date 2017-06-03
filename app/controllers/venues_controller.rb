@@ -1,6 +1,7 @@
 class VenuesController < ApplicationController
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  before_action :check_for_permissions
   # GET /venues
   # GET /venues.json
   def index
@@ -70,5 +71,13 @@ class VenuesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def venue_params
       params.require(:venue).permit(:name, :address, :city, :state, :latitude, :longitude)
+    end
+    
+    def check_for_permissions
+      if ( current_user.role == 'admin' && current_user.approved? )
+
+      else
+        redirect_to root_path
+      end
     end
 end
